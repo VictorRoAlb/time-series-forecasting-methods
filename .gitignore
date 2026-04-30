@@ -1,0 +1,40 @@
+# Data and outputs
+data/
+raw_data/
+outputs/
+artifacts/
+*.xlsx
+*.xls
+*.pdf
+*.docx
+*.pptx
+*.html
+*.log
+*.aux
+*.toc
+*.out
+*.zip
+
+# Allow safe examples
+!examples/
+!examples/*.csv
+!examples/*.txt
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+

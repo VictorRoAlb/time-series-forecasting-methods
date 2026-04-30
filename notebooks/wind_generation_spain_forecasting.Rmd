@@ -1,0 +1,149 @@
+---
+title: "Forecasting monthly wind generation in Spain"
+author: "Víctor Rodríguez Albendea"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    df_print: paged
+  pdf_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(forecast)
+library(lmtest)
+source("../src/forecasting_helpers.R")
+```
+
+# Project note
+
+This is the cleaned public version of an academic forecasting exercise.
+The original local coursework contained multiple drafts, course files and workbook-based inputs.
+For portfolio use, the workflow has been simplified to a reproducible report driven by a local CSV.
+
+# Load the series
+
+```{r}
+series_path <- "../examples/wind_generation_spain_monthly_2020_2024.csv"
+ts_wind <- load_wind_series(series_path)
+split_data <- train_test_split_ts(ts_wind, holdout = 5)
+
+train_ts <- split_data$train
+test_ts  <- split_data$test
+
+ts_wind
+```
+
+# Exploratory view
+
+```{r}
+plot(
+  ts_wind,
+  main = "Monthly wind generation in Spain (2020-2024)",
+  xlab = "Year",
+  ylab = "Wind generation (MW)",
+  col = "#0f5a8c",
+  lwd = 2
+)
+```
+
+```{r}
+decomp <- stl(ts_wind, s.window = "periodic")
+plot(decomp, main = "STL decomposition")
+```
+
+# Smoothing baselines
+
+## Simple exponential smoothing
+
+```{r}
+fit_ses <- HoltWinters(train_ts, beta = FALSE, gamma = FALSE)
+pred_ses <- predict(fit_ses, n.ahead = length(test_ts))
+rmse_ses <- holdout_rmse(test_ts, pred_ses)
+rmse_ses
+```
+
+## Holt trend model
+
+```{r}
+fit_holt <- HoltWinters(train_ts, gamma = FALSE)
+pred_holt <- predict(fit_holt, n.ahead = length(test_ts))
+rmse_holt <- holdout_rmse(test_ts, pred_holt)
+rmse_holt
+```
+
+## Holt-Winters
+
+```{r}
+fit_hw <- hw(train_ts, seasonal = "additive")
+pred_hw <- forecast(fit_hw, h = length(test_ts))
+rmse_hw <- holdout_rmse(test_ts, pred_hw$mean)
+rmse_hw
+```
+
+# ARIMA modelling
+
+The original academic work explored Box-Cox transformation, seasonal differencing and manual ARIMA identification.
+This public version keeps the same idea while using a compact modelling path.
+
+```{r}
+lambda_bc <- BoxCox.lambda(train_ts)
+lambda_bc
+```
+
+```{r}
+fit_arima <- auto.arima(
+  train_ts,
+  seasonal = TRUE,
+  lambda = lambda_bc,
+  stepwise = FALSE,
+  approximation = FALSE
+)
+
+fit_arima
+```
+
+```{r}
+pred_arima <- forecast(fit_arima, h = length(test_ts))
+rmse_arima <- holdout_rmse(test_ts, pred_arima$mean)
+rmse_arima
+```
+
+# Holdout comparison
+
+```{r}
+results <- data.frame(
+  model = c("SES", "Holt", "Holt-Winters", "ARIMA"),
+  holdout_rmse = c(rmse_ses, rmse_holt, rmse_hw, rmse_arima)
+)
+
+results[order(results$holdout_rmse), ]
+```
+
+# Residual diagnostics
+
+```{r}
+checkresiduals(fit_arima)
+```
+
+# Forecast preview
+
+```{r}
+future_forecast <- forecast(fit_arima, h = 12)
+plot(
+  future_forecast,
+  main = "12-month forecast preview from the selected ARIMA model",
+  xlab = "Year",
+  ylab = "Wind generation (MW)"
+)
+```
+
+# Remarks
+
+- The public version focuses on clarity and reproducibility.
+- It does not include the original course workbook, Word templates or lecture notes.
+- The staged CSV is enough to preserve the modelling narrative of the project.
+
