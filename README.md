@@ -19,11 +19,11 @@ This repository documents a forecasting workflow covering:
 
 ## Academic context
 
-Source material audited from:
+Source coursework folder:
 
 - `MASTER/PRIMER CUATRI/Tecnicas de prevision`
 
-The final local coursework report contained more modelling detail than the first public version of this repository. The public repo has therefore been expanded so that it reflects the real structure of the work more faithfully while still avoiding workbook and course-material uploads.
+The final local coursework report contained more modelling detail than the first public version of this repository. The repo has therefore been expanded so that it reflects the real structure of the work more faithfully while still avoiding workbook and course-material uploads.
 
 ## Repository contents
 
@@ -42,7 +42,7 @@ The final local coursework report contained more modelling detail than the first
 - `figures/`
   Public-safe preview figures derived from the staged CSV.
 - `docs/`
-  Notes on methodology, source auditing and public publication scope.
+  Notes on methodology, modelling decisions and publication scope.
 
 ## Modelling structure
 
@@ -61,6 +61,7 @@ The public workflow follows the same general logic used in the final coursework 
 
 - smoothing models already provide a useful baseline for the series;
 - Holt-Winters captures the seasonal structure better than SES or Holt alone;
+- the final report converges to a seasonal ARIMA structure that is consistent with the `auto.arima` benchmark;
 - ARIMA modelling adds a Box-Jenkins interpretation layer through differencing, ACF/PACF reasoning and residual checking;
 - the public repo keeps the forecasting logic, even though the original workbook is not published.
 
@@ -86,9 +87,11 @@ Some source documents from the original coursework may still be subject to teach
 
 ## Preview
 
-![Monthly wind generation overview](figures/wind_generation_overview.png)
+The most representative visual in the public version is the final seasonal-ARIMA forecast used to summarize the modelling sequence.
 
-![Train / holdout split](figures/train_holdout_split.png)
+![Final seasonal ARIMA forecast](figures/arima_forecast_preview.png)
+
+Additional context figures, including the full-series overview and the train/holdout split, are kept in `figures/`.
 
 ## Suggested execution
 

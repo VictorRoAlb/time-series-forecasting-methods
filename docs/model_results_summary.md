@@ -24,6 +24,8 @@ The final academic R Markdown file explicitly includes:
 - residual checks.
 
 The public notebook keeps the same narrative in a shorter form and adds `auto.arima` as the most practical executable benchmark.
+In the final coursework report, the manual Box-Jenkins reasoning and the automatic benchmark were aligned around a compact seasonal ARIMA specification.
+That final structure is the one used for the public forecast preview included in `figures/arima_forecast_preview.png`.
 
 ## Why the public repo is slightly more compact
 
