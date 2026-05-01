@@ -1,6 +1,6 @@
----
+﻿---
 title: "Forecasting monthly wind generation in Spain"
-author: "Víctor Rodríguez Albendea"
+author: "Victor Rodriguez Albendea"
 output:
   html_document:
     toc: true
@@ -20,9 +20,9 @@ source("../src/forecasting_helpers.R")
 
 # Project note
 
-This is the cleaned public version of an academic forecasting exercise.
+This is the public repository version of an academic forecasting exercise.
 The original local coursework contained multiple drafts, course files and workbook-based inputs.
-For portfolio use, the workflow has been simplified to a reproducible report driven by a local CSV.
+For portfolio use, the workflow is reproduced from a local CSV and a lighter execution setup.
 
 # Load the series
 
@@ -146,4 +146,5 @@ plot(
 - The public version focuses on clarity and reproducibility.
 - It does not include the original course workbook, Word templates or lecture notes.
 - The staged CSV is enough to preserve the modelling narrative of the project.
+
 

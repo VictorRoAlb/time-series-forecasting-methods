@@ -1,21 +1,36 @@
 # Methodology Overview
 
-The cleaned public workflow is intentionally compact and reproducible.
+The final coursework report in `Tecnicas de prevision` goes beyond a single ARIMA fit. The public repository keeps that broader structure while removing the original workbook and course files.
 
-## Core steps
+## Workflow
 
-1. Load the monthly series and define a time-series object with frequency 12.
-2. Visualize level, trend and seasonality.
-3. Split the last five months as a small holdout segment.
-4. Compare simple smoothing baselines:
-   - SES
-   - Holt
-   - Holt-Winters
-5. Fit an ARIMA-style model using classical identification logic.
-6. Evaluate holdout RMSE and inspect residual behaviour.
+1. Aggregate the source series at monthly frequency.
+2. Build a `ts` object with `frequency = 12`.
+3. Inspect the global profile and seasonal structure.
+4. Decompose the series with STL.
+5. Compare smoothing-based baselines:
+   - simple exponential smoothing;
+   - Holt trend;
+   - Holt-Winters additive.
+6. Apply Box-Cox when variance stabilization is helpful.
+7. Inspect `ndiffs()` and `nsdiffs()` to reason about stationarity.
+8. Use ACF/PACF and tentative specifications to motivate the ARIMA family.
+9. Fit `auto.arima` as a practical benchmark against manual reasoning.
+10. Compare models through holdout RMSE.
+11. Inspect residuals before producing the forecast preview.
 
-## Why this structure was chosen
+## Public material vs original coursework
 
-The original coursework folder contains several evolving report versions.
-For a public portfolio, the goal is not to preserve every draft but to expose the underlying modelling approach in a clean, readable form.
+Published here:
 
+- a safe monthly CSV;
+- an executable R Markdown report;
+- a compact script version of the workflow;
+- preview figures and documentation.
+
+Not published here:
+
+- the original Excel workbook;
+- lecture notes and teacher-provided PDFs;
+- Word/PDF submission files;
+- build artifacts from the coursework folder.

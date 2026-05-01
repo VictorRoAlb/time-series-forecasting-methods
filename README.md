@@ -1,19 +1,21 @@
 # Time Series Forecasting and ARIMA Modelling
 
-Public portfolio version of an academic forecasting project centered on classical time-series methods for monthly wind-generation modelling.
+Public repository for an academic forecasting project centered on classical time-series methods for monthly wind-generation modelling.
 
 ## Overview
 
-This repository documents a compact forecasting workflow covering:
+This repository documents a forecasting workflow covering:
 
-- exploratory time-series analysis
-- exponential smoothing baselines
-- Holt and Holt-Winters models
-- ARIMA / seasonal ARIMA identification
-- holdout-based evaluation
-- short-horizon forecasting
-
-The public version is built around a clean monthly series and a simplified R Markdown report so the project remains reproducible without exposing course handouts, Word templates or raw spreadsheets.
+- exploratory time-series analysis;
+- STL decomposition;
+- simple exponential smoothing;
+- Holt and Holt-Winters models;
+- manual Box-Jenkins reasoning;
+- ARIMA and seasonal ARIMA selection;
+- `auto.arima` as an automatic benchmark;
+- holdout-based evaluation;
+- residual diagnostics;
+- short-horizon forecasting.
 
 ## Academic context
 
@@ -21,50 +23,60 @@ Source material audited from:
 
 - `MASTER/PRIMER CUATRI/Tecnicas de prevision`
 
-This portfolio repo is a curated public export prepared from that coursework folder.
-
-## Collaboration note
-
-The original academic report was developed as collaborative coursework. This public repository is the cleaned portfolio version curated by Víctor Rodríguez Albendea from the audited local material.
+The final local coursework report contained more modelling detail than the first public version of this repository. The public repo has therefore been expanded so that it reflects the real structure of the work more faithfully while still avoiding workbook and course-material uploads.
 
 ## Repository contents
 
 - `notebooks/wind_generation_spain_forecasting.Rmd`
-  Cleaned report template using a local CSV instead of the original Excel workbook.
+  Main public report, expanded around the final academic workflow.
 - `src/forecasting_helpers.R`
-  Lightweight helper functions for loading the series and computing holdout RMSE.
+  Helper functions for loading the staged series and computing holdout RMSE.
+- `src/modeling_workflow.R`
+  Script version of the core modelling workflow.
 - `examples/wind_generation_spain_monthly_2020_2024.csv`
-  Public-safe monthly series used in the staged report.
+  Public-safe monthly series used in the report.
 - `examples/inventory_levels_series.txt`
-  Small practice series kept as a simple univariate forecasting example.
+  Small practice series kept as a compact example.
 - `examples/seasonal_temperature_series.txt`
-  Seasonal practice series preserved as a compact example input.
+  Small seasonal practice series.
 - `figures/`
-  Public-safe preview figures derived from the staged monthly series.
+  Public-safe preview figures derived from the staged CSV.
+- `docs/`
+  Notes on methodology, source auditing and public publication scope.
 
-## Methods
+## Modelling structure
 
-The staged workflow focuses on a practical modelling sequence:
+The public workflow follows the same general logic used in the final coursework report:
 
-1. Visualize the series and inspect seasonal structure.
-2. Compare smoothing-based baselines on a short holdout split.
-3. Stabilize variance where needed and inspect stationarity.
-4. Fit ARIMA-style models under a Box-Jenkins mindset.
-5. Evaluate the selected model through holdout error and residual diagnostics.
+1. Build a monthly series and inspect its trend-seasonality structure.
+2. Use STL decomposition to separate long-term and seasonal behaviour.
+3. Compare SES, Holt and Holt-Winters as deterministic baselines.
+4. Inspect variance stabilization through Box-Cox.
+5. Evaluate regular and seasonal differencing needs.
+6. Use ACF/PACF and tentative specifications to motivate the ARIMA family.
+7. Fit `auto.arima` as a practical benchmark against manual reasoning.
+8. Check residual behaviour before generating the final forecast.
+
+## Main takeaways from the coursework folder
+
+- smoothing models already provide a useful baseline for the series;
+- Holt-Winters captures the seasonal structure better than SES or Holt alone;
+- ARIMA modelling adds a Box-Jenkins interpretation layer through differencing, ACF/PACF reasoning and residual checking;
+- the public repo keeps the forecasting logic, even though the original workbook is not published.
 
 ## Data availability
 
 The original coursework folder contained lecture PDFs, Word files, templates and Excel workbooks.
 
-This public repository does **not** publish those course materials wholesale. Instead, it includes a compact CSV derived from the monthly wind-generation series used in the project, plus two very small practice text series that do not contain sensitive information.
+This public repository does not publish those course materials wholesale. Instead, it includes a compact CSV derived from the monthly wind-generation series used in the project, plus two very small practice text series that do not contain sensitive information.
 
 ## What is intentionally excluded
 
-- lecture PDFs and teacher-provided slides
-- course templates and Word submissions
-- raw Excel workbooks copied blindly
-- local HTML/PDF render outputs from the original course folder
-- logs and intermediate build artifacts
+- lecture PDFs and teacher-provided slides;
+- course templates and Word submissions;
+- raw Excel workbooks copied blindly;
+- local HTML/PDF render outputs from the original course folder;
+- logs and intermediate build artifacts.
 
 ## Privacy and licensing
 
@@ -90,8 +102,13 @@ From R / RStudio:
 
 Although it is not biomedical, it fits the public profile as a strong data-science project:
 
-- structured statistical modelling
-- clear forecasting logic
-- quantitative evaluation
-- reproducible reporting in R Markdown
+- structured statistical modelling;
+- clear forecasting logic;
+- quantitative evaluation;
+- reproducible reporting in R Markdown.
 
+## Additional documentation
+
+- `docs/methodology.md`
+- `docs/model_results_summary.md`
+- `docs/source_material_inventory.md`
