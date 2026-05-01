@@ -44,6 +44,13 @@ The final local coursework report contained more modelling detail than the first
 - `docs/`
   Notes on methodology, modelling decisions and publication scope.
 
+## Where to start
+
+1. `notebooks/wind_generation_spain_forecasting.Rmd`
+2. `figures/arima_forecast_preview.png`
+3. `src/modeling_workflow.R`
+4. `docs/model_results_summary.md`
+
 ## Modelling structure
 
 The public workflow follows the same general logic used in the final coursework report:
