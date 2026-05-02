@@ -33,6 +33,8 @@ The final local coursework report contained more modelling detail than the first
   Helper functions for loading the staged series and computing holdout RMSE.
 - `src/modeling_workflow.R`
   Script version of the core modelling workflow.
+- `src/build_forecasting_summary_panel.py`
+  Small Python utility used to assemble the public summary panel shown in the portfolio.
 - `examples/wind_generation_spain_monthly_2020_2024.csv`
   Public-safe monthly series used in the report.
 - `examples/inventory_levels_series.txt`
@@ -47,7 +49,7 @@ The final local coursework report contained more modelling detail than the first
 ## Where to start
 
 1. `notebooks/wind_generation_spain_forecasting.Rmd`
-2. `figures/arima_forecast_preview.png`
+2. `figures/forecasting_summary_panel.png`
 3. `src/modeling_workflow.R`
 4. `docs/model_results_summary.md`
 
@@ -94,11 +96,11 @@ Some source documents from the original coursework may still be subject to teach
 
 ## Preview
 
-The most representative visual in the public version is the final seasonal-ARIMA forecast used to summarize the modelling sequence.
+The main visual in the public version is a compact summary panel that shows the forecasting workflow from exploratory structure to the final ARIMA prediction.
 
-![Final seasonal ARIMA forecast](figures/arima_forecast_preview.png)
+![Forecasting workflow summary](figures/forecasting_summary_panel.png)
 
-Additional context figures, including the full-series overview and the train/holdout split, are kept in `figures/`.
+The individual final ARIMA forecast, series overview and holdout split are also kept separately in `figures/`.
 
 ## Suggested execution
 
