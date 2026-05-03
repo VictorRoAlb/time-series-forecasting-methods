@@ -1,10 +1,10 @@
 # Time Series Forecasting and ARIMA Modelling
 
-Public repository for an academic forecasting project centered on classical time-series methods for monthly wind-generation modelling.
+In this repository I document an academic forecasting project centered on classical time-series methods for monthly wind-generation modelling.
 
 ## Overview
 
-This repository documents a forecasting workflow covering:
+Here I document a forecasting workflow covering:
 
 - exploratory time-series analysis;
 - STL decomposition;
@@ -23,7 +23,7 @@ Source coursework folder:
 
 - `MASTER/PRIMER CUATRI/Tecnicas de prevision`
 
-The final local coursework report contained more modelling detail than the first public version of this repository. The repo has therefore been expanded so that it reflects the real structure of the work more faithfully while still avoiding workbook and course-material uploads.
+My final local coursework report contained more modelling detail than the first version I published here, so I expanded the repo to reflect the real structure of the work more faithfully while still avoiding workbook and course-material uploads.
 
 ## Repository contents
 
@@ -55,7 +55,7 @@ The final local coursework report contained more modelling detail than the first
 
 ## Modelling structure
 
-The public workflow follows the same general logic used in the final coursework report:
+The public workflow follows the same general logic I used in the final coursework report:
 
 1. Build a monthly series and inspect its trend-seasonality structure.
 2. Use STL decomposition to separate long-term and seasonal behaviour.
@@ -72,13 +72,13 @@ The public workflow follows the same general logic used in the final coursework 
 - Holt-Winters captures the seasonal structure better than SES or Holt alone;
 - the final report converges to a seasonal ARIMA structure that is consistent with the `auto.arima` benchmark;
 - ARIMA modelling adds a Box-Jenkins interpretation layer through differencing, ACF/PACF reasoning and residual checking;
-- the public repo keeps the forecasting logic, even though the original workbook is not published.
+- I keep the forecasting logic public here even though I do not publish the original workbook.
 
 ## Data availability
 
 The original coursework folder contained lecture PDFs, Word files, templates and Excel workbooks.
 
-This public repository does not publish those course materials wholesale. Instead, it includes a compact CSV derived from the monthly wind-generation series used in the project, plus two very small practice text series that do not contain sensitive information.
+I do not publish those course materials wholesale. Instead, I include a compact CSV derived from the monthly wind-generation series used in the project, plus two very small practice text series that do not contain sensitive information.
 
 ## What is intentionally excluded
 
@@ -96,7 +96,7 @@ Some source documents from the original coursework may still be subject to teach
 
 ## Preview
 
-The main visual in the public version is a compact summary panel that shows the forecasting workflow from exploratory structure to the final ARIMA prediction.
+The main visual I keep here is a compact summary panel that shows the forecasting workflow from exploratory structure to the final ARIMA prediction.
 
 ![Forecasting workflow summary](figures/forecasting_summary_panel.png)
 
